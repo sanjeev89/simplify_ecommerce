@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+    <!-- remove the / before css and see the magic -->
+    <title>Header</title>
+
+  </head>
+  <body>
+      
+    <div class="ajaxbg">
+      <div class="ajaxinner">
+        <h3 class="page-title">you are now being redirected to paypal...</h3>
+        <img src="/images/ajax-loader.gif" alt="" srcset="">
+      </div>
+    </div>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark ">
+  <a class="navbar-brand" href="/home">CmsShoppingCart</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+
+      <% pages.forEach( function(page) { %>
+        <li class="nav-item active">
+            <a class="nav-link" href="/<%=page.slug%>"><%= page.title%> <span class="sr-only">(current)</span></a>
+        </li>
+      
+      <% }) %> 
+
+
+    </ul>
+    
+    <ul class="navbar-nav mr-auto navbar-right">
+
+      <li class="nav-item active">
+        <a class="nav-link" href="/cart/checkout">
+          my cart( 
+            <% if(typeof cart != "undefined") { %>
+                <%= cart.length %>
+            <% } else { %>
+                0
+               <% } %>
+          )
+        </a>
+      </li>
+
+      <% if(user) {%>
+        <li class="nav-item active">
+          <a href="/user/logout" class="nav-link">Hi, <%= user.username %> ( logout ) </a>
+        </li>
+
+      <% } if(user && user.admin==1) { %>
+        <li class="nav-item active">
+          <a href="/admin/pages" class="nav-link">admin area</a>
+        </li>
+      
+      <%} else { %>
+        <li class="nav-item active">
+            <a class="nav-link" href="/user/login">login<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="/user/register">register <span class="sr-only">(current)</span></a>
+        </li>
+      <% } %>
+
+
+
+
+
+
+      </ul>
+
+      
+
+
+
+  
+    
+
+  </div>
+</nav>
+
+<div class="container">
+  <br>
+
+  <%- messages('messages', locals) %>
+  <% if(errors!=null) { %>
+    <% errors.forEach(function(error){ %>
+      <div class="alert alert-danger">
+        <%= error.msg %>
+      </div>
+    <% }) %>
+  <% } %>
+
+
+  <div class="row">
+    
+    <div class="col-xs-12 col-md-3">
+        <h3 class="page-title">categories</h3>
+        <ul class="list-group">
+            <li class="list-group-item"><a href="/products">All products</a></li>
+          <% categories.forEach(function(category) { %>
+            <li class="list-group-item"><a href="/products/<%=category.slug%>"><%= category.title %></a></li>
+          <% }) %>
+          
+        </ul>
+    </div>
+    <div class="col-xs-12 col-md-1"></div>
+    <div class="col-xs-12 col-md-8">
+
+  
+
+
+
