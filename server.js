@@ -138,6 +138,7 @@ app.get('*', function(req, res, next) {
 var pages = require('./routes/pages')
 var adminPages = require('./routes/admin_pages')
 var adminCategories = require('./routes/admin_categories')
+var adminUsers = require('./routes/admin_users')
 var adminProducts = require('./routes/admin_products')
 var products = require('./routes/products')
 var cart = require('./routes/cart')
@@ -153,6 +154,8 @@ app.use('/admin/Pages', adminPages)
 
 //admin-categories routes
 app.use('/admin/categories', adminCategories)
+
+app.use('/admin/users', adminUsers)
 
 //admin-products routes
 app.use('/admin/products', adminProducts);

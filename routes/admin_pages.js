@@ -27,7 +27,7 @@ router.get('/', isAdmin, function(req, res) {
 /*
 Get add page
 */
-router.get('/add-page', isAdmin, function(req, res){
+router.get('/add-page',  function(req, res){
     var title ="";
     var slug = "";
     var content = "";

@@ -41,7 +41,7 @@
 
     </ul>
     
-    <ul class="navbar-nav mr-auto navbar-right">
+    <ul class="navbar-nav mr-auto navbar-right" style = "display: contents;">
 
       <li class="nav-item active">
         <a class="nav-link" href="/cart/checkout">
@@ -55,14 +55,16 @@
         </a>
       </li>
 
-      <% if(user) {%>
+      <% if(user && user.admin=="1") {%>
         <li class="nav-item active">
           <a href="/user/logout" class="nav-link">Hi, <%= user.username %> ( logout ) </a>
         </li>
-
-      <% } if(user && user.admin==1) { %>
         <li class="nav-item active">
           <a href="/admin/pages" class="nav-link">admin area</a>
+        </li>
+      <% } else if(user) { %>
+        <li class="nav-item active">
+          <a href="/user/logout" class="nav-link">Hi, <%= user.username %> ( logout ) </a>
         </li>
       
       <%} else { %>

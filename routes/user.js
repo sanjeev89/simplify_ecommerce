@@ -35,6 +35,7 @@ router.post('/register', function(req, res) {
     req.checkBody('password2', 'Passwords did not match!').equals(password)
 
     var errors = req.validationErrors();
+
     if(errors) {
         console.log(errors)
         res.render('register', {
@@ -44,6 +45,7 @@ router.post('/register', function(req, res) {
         });
     }
 
+
     else {
         User.findOne({username: username}, function(err, user) {
             if(err) {
@@ -52,15 +54,15 @@ router.post('/register', function(req, res) {
 
             if(user) {
                 req.flash('danger', 'user already exists, choose another username')
-                res.redirect('/user/register')
+                return res.redirect('/user/register')
             }
-            else {
+            User.find({}, (err, users) => {
                 var user = new User({
                     name: name,
                     email: email,
                     username: username,
                     password: password,
-                    admin: 0
+                    admin: users.length ? "0" : "1"
                 });
 
                 bcrypt.genSalt(10, function(err, salt) {
@@ -82,7 +84,7 @@ router.post('/register', function(req, res) {
                             }
                         })
                 })
-            }
+            })
         })
     }
 })

@@ -1,0 +1,33 @@
+<%- include("../layouts/adminheader") %>
+
+<h2 class="page-title">Edit a category</h2>
+<a href="/admin/users" class = "btn btn-primary">Back to all users</a>
+<br><br>
+
+<form action="/admin/users/edit-user/<%=id%>" method="post">
+    <div class="form-group">
+        <label for="Title">Email</label>
+        <input type="email" class="form-control"  name = "email"  value = "<%=email%>" placeholder = "Email" >
+
+        <label for="Title">username</label>
+        <input type="text" class="form-control" name = "username"  value = "<%=username%>" placeholder = "Username">
+
+        <label for="Title">name</label>
+        <input type="text" class="form-control" name = "name" value = "<%=name%>" placeholder = "name">
+
+        <div class="form-group">
+            <label for="role">Role</label>
+            <select name="role" class="form-control">
+                    <option value="1">Site Adminintrator</option>
+                    <option value="0">Customer</option>
+            </select>
+        </div>
+
+
+    </div>
+
+    <!-- <input type="hidden" class="hidden" name = "id" value = "<%=id%>"> -->
+    <button class="btn btn-primary">Submit</button>
+</form>
+
+<%- include("../layouts/adminfooter") %>
