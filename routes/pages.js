@@ -34,11 +34,15 @@ router.get('/:slug', function(req, res) {
         if(err) {
             return console.log(err)
         }
+        if(page)
         res.render('index', {
             title: page.title,
             slug: page.slug,
             content: page.content
         })
+        else {
+            res.send("no page found")
+        }
     })
 })
 

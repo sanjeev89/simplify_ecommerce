@@ -29,7 +29,8 @@ var UserSchema = mongoose.Schema({
 
     admin:
     {
-        type: Number
+        type: String,
+        default: "0"
     }
 
 })

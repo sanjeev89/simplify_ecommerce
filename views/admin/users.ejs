@@ -1,0 +1,38 @@
+<%- include("../layouts/adminheader") %>
+
+<h2 class="page-title">Edit User</h2>
+<a href="/admin/categories" class = "btn btn-primary">Back to all pages</a>
+<br><br>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>username</th>
+            <th>role</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% users.forEach(function(user) { %>
+            <tr>
+                <td><%= user.email %></td>
+                <td><%= user.username %></td>
+                <% if(user.admin=="1"){ %>
+                    <td>Site Administrator</td>
+                  <% } else{ %>  
+                    <td>customer</td>
+                 <% } %>
+            
+                <td><a href="/admin/users/edit-user/<%= user._id %>">Edit</a></td>
+            
+                <td><a class="confirmDeletion" href="/admin/users/delete-user/<%=user._id%>">Delete</a></td>
+            
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
+
+<%- include("../layouts/adminfooter") %>
